@@ -1,0 +1,105 @@
+---
+title: "stat Project"
+author: "Praveen Kumar"
+date: "02/05/2022"
+output: html_document
+---
+```{r}
+library(ggplot2)
+```
+
+Now a  days highly common travelling with airlines companies and since it is common.
+Customer satisfication is one of the most important deciding factor.
+
+
+```{r}
+plane <- read.csv(file.choose(),header=TRUE)
+```
+
+                                      Problem Definition
+                                      
+        Customer satisfaction survey we can predict the most essential feature that leads to satisfied customer they are seat comfort     
+        checkin service etc....
+        Then, we can predict the rating of the passenger we can predict which featured are important and which should be improved..
+        
+        
+                                      General information about the Datasset 
+                                      
+        This dataset is US Airline passenger satisfaction survey
+        Dataset is obtained from kaggle 
+        there are 24 features and 129880 observations
+        There are two classes called "satisfied" and "Netural/ Dissatisfied"
+        
+        
+        Key variables
+            Satisfaction
+            grnder
+            age
+            customer type
+            travel time
+            flight distance
+```{r}
+head(plane)
+```
+
+```{r}
+tail(plane)
+```
+
+```{r}
+dim(plane)
+```
+
+```{r}
+colnames(plane)
+```
+
+```{r}
+summary(plane)
+```
+```{r}
+sum(is.na(plane))
+```
+
+```{r}
+sapply(plane,function(X) sum(is.na(X)))
+```
+
+```{r}
+hist(plane$Arrival.Delay, xlab = "A journey makes lately", col= "blue",main = "Arrival delay",xlim = c(0,400), breaks = 50 )
+```
+
+```{r}
+plane$Arrival.Delay[is.na(plane$Arrival.Delay)] <- mean(plane$Arrival.Delay, na.rm = TRUE)
+sum(is.na(plane))
+```
+
+```{r}
+sapply(plane,function(X) sum(is.na(X)))
+```
+
+```{r}
+ggplot(as.data.frame(plane, aes(plane$Satisfaction), Freq)) + geom_col(position='dodge')
+
+```
+
+```{r}
+boxplot.default(p)
+```
+
+
+```{r}
+barplot(p)
+```
+
+
+```{r}
+p <- table(plane$Age)
+p
+```
+
+                Insights
+                    Increasing a Wifi quality
+                    On-board service
+                    Online boarding
+                    marketing to the Business segment
